@@ -37,7 +37,7 @@ const visualReveal = {
   },
 }
 
-export function HeroSection({ locale }: { locale: Locale | string | undefined }) {
+export function HeroSection({ locale }: { locale?: Locale | string | undefined }) {
   const m = getMessages(locale)
   const l = locale === "ar" ? "ar" : locale === "en" ? "en" : "nl"
   const dir = l === "ar" ? "rtl" : "ltr"
@@ -118,7 +118,7 @@ export function HeroSection({ locale }: { locale: Locale | string | undefined })
       <div className="container relative">
         {/* Language globe (hero) */}
         <div className="absolute right-4 top-6 z-10 sm:right-6 sm:top-8">
-          <LocaleSwitcherGlobe locale={locale} label={m.language.switch} />
+          <LocaleSwitcherGlobe locale={l as Locale} label={m.language.switch} />
         </div>
 
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
@@ -185,7 +185,7 @@ export function HeroSection({ locale }: { locale: Locale | string | undefined })
             <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button asChild size="xl" variant="brand" className="w-full sm:w-auto">
                 <Link
-                  href={`/${locale}/register`}
+                  href={`/${l}/register`}
                   className="inline-flex items-center gap-2 transition-[gap] duration-300 group-hover:gap-3"
                 >
                   {m.hero.ctaPrimary}

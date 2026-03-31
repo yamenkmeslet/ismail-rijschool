@@ -164,7 +164,7 @@ export default function AccountPage() {
           {[
             { label: copy?.answered ?? 'Vragen beantwoord', current: 247, total: 2500, unit: locale === 'ar' ? 'سؤال' : 'vragen' },
             { label: copy?.mock ?? 'Nep-examens afgelegd', current: 3, total: 999, unit: locale === 'ar' ? 'امتحان' : 'examens' },
-            { label: copy?.study ?? 'Studietijd', current: 12, total: 999, unit: locale === 'ar' ? copy.hours : 'uur' },
+            { label: copy?.study ?? 'Studietijd', current: 12, total: 999, unit: locale === 'ar' ? (copy?.hours ?? 'ساعة') : 'uur' },
           ].map((stat) => (
             <div key={stat.label} className="space-y-2">
               <div className="flex justify-between text-sm">

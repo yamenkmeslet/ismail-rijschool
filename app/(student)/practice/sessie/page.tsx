@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { Suspense, useEffect, useMemo, useState } from "react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { ArrowLeft, ArrowRight, Flag, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -103,7 +103,7 @@ function getDemoQuestions(locale: string): Question[] {
   ]
 }
 
-export default function PracticeSessionPage() {
+function PracticeSessionContent() {
   const sp = useSearchParams()
   const pathname = usePathname()
   const locale = getLocaleFromPathname(pathname)
@@ -287,3 +287,19 @@ export default function PracticeSessionPage() {
   )
 }
 
+function PracticeSessionFallback() {
+  return (
+    <div className="mx-auto max-w-4xl space-y-4 p-6 lg:p-8">
+      <div className="h-8 w-48 animate-pulse rounded bg-gray-200" />
+      <div className="h-64 animate-pulse rounded-xl bg-gray-100" />
+    </div>
+  )
+}
+
+export default function PracticeSessionPage() {
+  return (
+    <Suspense fallback={<PracticeSessionFallback />}>
+      <PracticeSessionContent />
+    </Suspense>
+  )
+}

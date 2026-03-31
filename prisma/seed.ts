@@ -8,6 +8,7 @@ import {
   SubscriptionStatus,
   Language,
   ContentBlockType,
+  OptionKey,
 } from "@prisma/client"
 
 const prisma = new PrismaClient()
@@ -556,7 +557,7 @@ async function main() {
       const answerOption = await prisma.answerOption.create({
         data: {
           questionId: question.id,
-          optionKey: opt.key,
+          optionKey: opt.key as OptionKey,
           isCorrect: opt.isCorrect,
         },
       })
