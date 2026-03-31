@@ -56,7 +56,8 @@ export default function CategoriesPage() {
     async function run() {
       try {
         const res = await fetch("/api/categories")
-        const data = (await res.json()) as any[]
+        const raw = (await res.json()) as any[] | { categories?: any[] }
+        const data = Array.isArray(raw) ? raw : raw.categories ?? []
         if (!mounted) return
         setCategories(
           data.map((c) => ({
