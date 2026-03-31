@@ -1,0 +1,459 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CSS Custom Properties — Design Tokens
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* Background & Foreground */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    /* Card */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Primary — Blue */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    /* Muted */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent */
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border, Input, Ring */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    /* Border Radius */
+    --radius: 0.5rem;
+
+    /* Brand Gradient */
+    --gradient-start: #2563eb;
+    --gradient-end: #4f46e5;
+
+    /* Sidebar */
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 64px;
+
+    /* Header */
+    --header-height: 64px;
+  }
+
+  .dark {
+    /* Background & Foreground */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    /* Card */
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    /* Popover */
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary — Blue (brighter in dark) */
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    /* Secondary */
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted */
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    /* Accent */
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Destructive */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border, Input, Ring */
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Base Reset & Global Styles
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 { @apply text-4xl leading-tight; }
+  h2 { @apply text-3xl leading-snug; }
+  h3 { @apply text-2xl leading-snug; }
+  h4 { @apply text-xl leading-normal; }
+  h5 { @apply text-lg leading-normal; }
+  h6 { @apply text-base leading-normal; }
+
+  /* Links */
+  a {
+    @apply text-primary underline-offset-4;
+  }
+  a:hover {
+    @apply underline;
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+
+  /* Remove default list styles when inside nav */
+  nav ul, nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Images */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  /* Code */
+  code, pre {
+    @apply font-mono text-sm;
+  }
+  pre {
+    @apply overflow-x-auto rounded-md bg-muted p-4;
+  }
+  code:not(pre code) {
+    @apply rounded bg-muted px-1.5 py-0.5 text-sm font-medium;
+  }
+
+  /* Form elements */
+  input, textarea, select, button {
+    @apply font-sans;
+  }
+
+  /* Disabled state */
+  [disabled], [aria-disabled="true"] {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Component Layer — Reusable Patterns
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@layer components {
+  /* Container */
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full max-w-3xl px-4 sm:px-6;
+  }
+
+  .container-wide {
+    @apply mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-sm {
+    @apply py-8 md:py-12;
+  }
+
+  /* Brand gradient */
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  }
+
+  .text-brand-gradient {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card variants */
+  .card-elevated {
+    @apply rounded-xl bg-card shadow-card border border-border/50 transition-shadow duration-200 hover:shadow-card-hover;
+  }
+
+  .card-flat {
+    @apply rounded-xl bg-card border border-border;
+  }
+
+  .card-interactive {
+    @apply rounded-xl bg-card border border-border cursor-pointer transition-all duration-200 hover:border-primary/50 hover:shadow-brand;
+  }
+
+  /* Quiz answer option */
+  .answer-option {
+    @apply relative flex cursor-pointer items-start gap-3 rounded-lg border-2 border-border bg-card p-4 transition-all duration-150;
+  }
+
+  .answer-option:hover {
+    @apply border-primary/50 bg-primary/5;
+  }
+
+  .answer-option.selected {
+    @apply border-primary bg-primary/10;
+  }
+
+  .answer-option.correct {
+    @apply border-success bg-success/10;
+  }
+
+  .answer-option.incorrect {
+    @apply border-error bg-error/10;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply h-2 w-full overflow-hidden rounded-full bg-secondary;
+  }
+
+  .progress-bar-fill {
+    @apply h-full rounded-full bg-primary transition-all duration-500 ease-out;
+  }
+
+  /* Badge variants */
+  .badge-difficulty-easy {
+    @apply inline-flex items-center rounded-full bg-success/10 px-2.5 py-0.5 text-xs font-medium text-success;
+  }
+
+  .badge-difficulty-medium {
+    @apply inline-flex items-center rounded-full bg-warning/10 px-2.5 py-0.5 text-xs font-medium text-warning;
+  }
+
+  .badge-difficulty-hard {
+    @apply inline-flex items-center rounded-full bg-error/10 px-2.5 py-0.5 text-xs font-medium text-error;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply flex flex-col gap-1 rounded-xl border border-border bg-card p-6;
+  }
+
+  .stat-card-value {
+    @apply text-3xl font-bold tracking-tight text-foreground;
+  }
+
+  .stat-card-label {
+    @apply text-sm font-medium text-muted-foreground;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply animate-pulse rounded-md bg-muted;
+  }
+
+  /* Page heading */
+  .page-title {
+    @apply text-2xl font-bold tracking-tight text-foreground md:text-3xl;
+  }
+
+  .page-description {
+    @apply mt-2 text-muted-foreground;
+  }
+
+  /* Sidebar styles */
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .sidebar-link.active {
+    @apply bg-primary/10 text-primary;
+  }
+
+  /* RTL support for Arabic */
+  [dir="rtl"] .sidebar-link {
+    @apply flex-row-reverse;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Utility Layer — Custom Utilities
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@layer utilities {
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Glass effect */
+  .glass {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass {
+    background-color: rgba(17, 24, 39, 0.75);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Safe area insets for mobile */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Truncate with ellipsis */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Flex center shorthand */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  /* Full bleed */
+  .full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   RTL (Right-to-Left) Support for Arabic
+   ───────────────────────────────────────────────────────────────────────────── */
+
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: unset;
+  margin-left: auto;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-left: unset;
+  margin-right: auto;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Print Styles
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}

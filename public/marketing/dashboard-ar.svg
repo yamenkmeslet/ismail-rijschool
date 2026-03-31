@@ -1,0 +1,127 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="260" y1="220" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB"/>
+      <stop offset="0.55" stop-color="#1D4ED8"/>
+      <stop offset="1" stop-color="#4338CA"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="white" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="white" stop-opacity="0.06"/>
+    </linearGradient>
+    <filter id="shadow" x="-20" y="-20" width="1640" height="1040" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.22"/>
+    </filter>
+    <filter id="soft" x="-20" y="-20" width="1640" height="1040" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- App window -->
+  <g filter="url(#shadow)">
+    <rect x="120" y="90" width="1360" height="820" rx="28" fill="#FFFFFF"/>
+    <!-- Browser chrome -->
+    <rect x="120" y="90" width="1360" height="64" rx="28" fill="#F1F5F9"/>
+    <circle cx="164" cy="122" r="8" fill="#F87171"/>
+    <circle cx="190" cy="122" r="8" fill="#FBBF24"/>
+    <circle cx="216" cy="122" r="8" fill="#34D399"/>
+    <rect x="560" y="108" width="480" height="28" rx="10" fill="#FFFFFF"/>
+    <rect x="585" y="118" width="430" height="8" rx="4" fill="#CBD5E1"/>
+
+    <!-- Sidebar -->
+    <rect x="120" y="154" width="300" height="756" rx="0" fill="#0B1220"/>
+    <rect x="156" y="196" width="120" height="14" rx="7" fill="#93C5FD" fill-opacity="0.85"/>
+    <rect x="156" y="230" width="210" height="10" rx="5" fill="#94A3B8" fill-opacity="0.55"/>
+
+    <!-- Sidebar items -->
+    <g fill="#E2E8F0" fill-opacity="0.92" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">
+      <text x="168" y="292">'D1&J3J)</text>
+      <text x="168" y="332">DH-) 'D*-CE</text>
+      <text x="168" y="372">*/1J(</text>
+      <text x="168" y="412">-3( 'DB3E</text>
+      <text x="168" y="452">'E*-'F *,1J(J</text>
+      <text x="168" y="492">E1',9) 'D#.7'!</text>
+      <text x="168" y="532">'DE-AH8'*</text>
+      <text x="168" y="572">'D*B/E</text>
+      <text x="168" y="612">'D%9/'/'*</text>
+    </g>
+    <rect x="150" y="312" width="240" height="38" rx="12" fill="#2563EB" fill-opacity="0.22"/>
+    <rect x="156" y="306" width="6" height="22" rx="3" fill="#60A5FA"/>
+
+    <!-- Main area background -->
+    <rect x="420" y="154" width="1060" height="756" fill="#FFFFFF"/>
+
+    <!-- Header -->
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <text x="1420" y="230" text-anchor="end" font-size="28" font-weight="800" fill="#0F172A">DH-) 'D*-CE</text>
+      <text x="1420" y="260" text-anchor="end" font-size="16" font-weight="600" fill="#64748B">*'(9 *B/EC H'3*9/ DD'E*-'F</text>
+    </g>
+
+    <!-- Stat cards -->
+    <g filter="url(#soft)">
+      <rect x="420" y="286" width="1028" height="160" rx="20" fill="#F8FAFC" stroke="#E2E8F0"/>
+    </g>
+    <g>
+      <rect x="452" y="316" width="240" height="100" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="714" y="316" width="240" height="100" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="976" y="316" width="240" height="100" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="1238" y="316" width="210" height="100" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+    </g>
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <text x="676" y="352" text-anchor="end" font-size="14" font-weight="700" fill="#64748B">#3&D) E,'()</text>
+      <text x="676" y="392" text-anchor="end" font-size="30" font-weight="900" fill="#0F172A">1240</text>
+
+      <text x="938" y="352" text-anchor="end" font-size="14" font-weight="700" fill="#64748B">'D/B)</text>
+      <text x="938" y="392" text-anchor="end" font-size="30" font-weight="900" fill="#0F172A">87%</text>
+
+      <text x="1200" y="352" text-anchor="end" font-size="14" font-weight="700" fill="#64748B">,'G2J) 'D'E*-'F</text>
+      <text x="1200" y="392" text-anchor="end" font-size="30" font-weight="900" fill="#0F172A">78%</text>
+
+      <text x="1430" y="352" text-anchor="end" font-size="14" font-weight="700" fill="#64748B">#.7'!</text>
+      <text x="1430" y="392" text-anchor="end" font-size="30" font-weight="900" fill="#0F172A">7</text>
+    </g>
+
+    <!-- Quick actions -->
+    <g>
+      <rect x="420" y="470" width="1028" height="160" rx="20" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <text x="1420" y="510" text-anchor="end" font-size="16" font-weight="800" fill="#0F172A">%,1'!'* 31J9)</text>
+      </g>
+      <rect x="452" y="528" width="232" height="72" rx="16" fill="#2563EB"/>
+      <rect x="700" y="528" width="232" height="72" rx="16" fill="#1E293B"/>
+      <rect x="948" y="528" width="232" height="72" rx="16" fill="#0F766E"/>
+      <rect x="1196" y="528" width="252" height="72" rx="16" fill="#7C3AED"/>
+      <g fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-weight="800" font-size="16">
+        <text x="664" y="572" text-anchor="end">*/1J( 31J9</text>
+        <text x="912" y="572" text-anchor="end">'E*-'F *,1J(J</text>
+        <text x="1160" y="572" text-anchor="end">E1',9) 'D#.7'!</text>
+        <text x="1428" y="572" text-anchor="end">*/1J( -3( 'DB3E</text>
+      </g>
+    </g>
+
+    <!-- Progress by category -->
+    <g>
+      <rect x="420" y="654" width="1028" height="230" rx="20" fill="url(#bg)"/>
+      <rect x="452" y="684" width="964" height="170" rx="18" fill="url(#card)"/>
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <text x="1420" y="706" text-anchor="end" font-size="16" font-weight="800" fill="#FFFFFF">'D#/'! -3( 'DB3E</text>
+      </g>
+      <!-- Bars -->
+      <g font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#E2E8F0">
+        <text x="1410" y="750" text-anchor="end">'D#HDHJ)</text>
+        <text x="1410" y="792" text-anchor="end">%4'1'* 'DE1H1</text>
+        <text x="1410" y="834" text-anchor="end">BH'9/ 'DE1H1</text>
+        <text x="1410" y="876" text-anchor="end">%/1'C 'DE.'71</text>
+      </g>
+      <rect x="520" y="736" width="780" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.18"/>
+      <rect x="520" y="736" width="530" height="14" rx="7" fill="#93C5FD"/>
+      <rect x="520" y="778" width="780" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.18"/>
+      <rect x="520" y="778" width="600" height="14" rx="7" fill="#A7F3D0"/>
+      <rect x="520" y="820" width="780" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.18"/>
+      <rect x="520" y="820" width="640" height="14" rx="7" fill="#FDE68A"/>
+      <rect x="520" y="862" width="780" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.18"/>
+      <rect x="520" y="862" width="470" height="14" rx="7" fill="#FCA5A5"/>
+    </g>
+  </g>
+</svg>
+

@@ -1,0 +1,96 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="220" y1="210" x2="1460" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <filter id="shadow2" x="-30" y="-30" width="1660" height="1060" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow2)">
+    <rect x="120" y="90" width="1360" height="820" rx="28" fill="#FFFFFF"/>
+    <rect x="120" y="90" width="1360" height="64" rx="28" fill="#F1F5F9"/>
+    <circle cx="164" cy="122" r="8" fill="#F87171"/>
+    <circle cx="190" cy="122" r="8" fill="#FBBF24"/>
+    <circle cx="216" cy="122" r="8" fill="#34D399"/>
+    <rect x="560" y="108" width="480" height="28" rx="10" fill="#FFFFFF"/>
+    <rect x="585" y="118" width="430" height="8" rx="4" fill="#CBD5E1"/>
+
+    <!-- Content -->
+    <rect x="120" y="154" width="1360" height="756" rx="0" fill="url(#bg2)"/>
+
+    <!-- Top bar -->
+    <rect x="170" y="190" width="1260" height="64" rx="18" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <text x="1410" y="232" text-anchor="end" font-size="18" font-weight="900" fill="#FFFFFF">*/1J(</text>
+      <rect x="1180" y="206" width="140" height="32" rx="16" fill="#2563EB" fill-opacity="0.22" stroke="#93C5FD" stroke-opacity="0.35"/>
+      <text x="1300" y="228" text-anchor="end" font-size="13" font-weight="800" fill="#E0F2FE">3$'D 3 EF 10</text>
+
+      <rect x="980" y="206" width="150" height="32" rx="16" fill="#111827" fill-opacity="0.45" stroke="#FFFFFF" stroke-opacity="0.14"/>
+      <text x="1110" y="228" text-anchor="end" font-size="13" font-weight="800" fill="#E2E8F0">00:18:42</text>
+    </g>
+
+    <!-- Main card -->
+    <rect x="270" y="280" width="1060" height="560" rx="24" fill="#FFFFFF"/>
+    <rect x="270" y="280" width="1060" height="560" rx="24" stroke="#E2E8F0"/>
+
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <text x="1260" y="330" text-anchor="end" font-size="20" font-weight="900" fill="#0F172A">E'0' *9FJ G0G 'D%4'1)</text>
+      <text x="1260" y="356" text-anchor="end" font-size="14" font-weight="700" fill="#64748B">'.*1 'D%,'() 'D5-J-) +E *-BB EF 'DF*J,)</text>
+    </g>
+
+    <!-- Image placeholder -->
+    <rect x="330" y="390" width="940" height="190" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="780" y="420" width="140" height="140" rx="18" fill="#2563EB" fill-opacity="0.10" stroke="#93C5FD"/>
+    <path d="M850 450 L905 520 L795 520 Z" fill="#2563EB" fill-opacity="0.18"/>
+    <rect x="806" y="528" width="168" height="10" rx="5" fill="#CBD5E1"/>
+
+    <!-- Options -->
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <rect x="330" y="610" width="455" height="64" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="815" y="610" width="455" height="64" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="330" y="690" width="455" height="64" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+      <rect x="815" y="690" width="455" height="64" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+
+      <!-- A -->
+      <rect x="354" y="628" width="34" height="34" rx="10" fill="#0F172A"/>
+      <text x="377" y="651" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF">A</text>
+      <text x="770" y="650" text-anchor="end" font-size="14" font-weight="800" fill="#0F172A">D/JC -B 'D#HDHJ)</text>
+
+      <!-- B (highlight) -->
+      <rect x="839" y="628" width="34" height="34" rx="10" fill="#2563EB"/>
+      <text x="862" y="651" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF">B</text>
+      <text x="1255" y="650" text-anchor="end" font-size="14" font-weight="800" fill="#0F172A">J,( 'D*HBA</text>
+
+      <!-- C -->
+      <rect x="354" y="708" width="34" height="34" rx="10" fill="#0F172A"/>
+      <text x="377" y="731" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF">C</text>
+      <text x="770" y="730" text-anchor="end" font-size="14" font-weight="800" fill="#0F172A">*-0J1 .71</text>
+
+      <!-- D -->
+      <rect x="839" y="708" width="34" height="34" rx="10" fill="#0F172A"/>
+      <text x="862" y="731" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF">D</text>
+      <text x="1255" y="730" text-anchor="end" font-size="14" font-weight="800" fill="#0F172A">EEFH9 'DE1H1</text>
+    </g>
+
+    <!-- Buttons -->
+    <rect x="330" y="770" width="455" height="54" rx="16" fill="#2563EB"/>
+    <rect x="815" y="770" width="455" height="54" rx="16" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <g font-family="Segoe UI, Arial, sans-serif" font-weight="900" font-size="15">
+      <text x="770" y="804" text-anchor="end" fill="#FFFFFF">*-BB EF 'D%,'()</text>
+      <text x="1255" y="804" text-anchor="end" fill="#0F172A">*-/J/</text>
+    </g>
+
+    <!-- Bottom nav -->
+    <rect x="270" y="860" width="520" height="54" rx="18" fill="#FFFFFF" fill-opacity="0.10" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <rect x="810" y="860" width="520" height="54" rx="18" fill="#2563EB" fill-opacity="0.35" stroke="#93C5FD" stroke-opacity="0.35"/>
+    <g font-family="Segoe UI, Arial, sans-serif" font-weight="900" font-size="15">
+      <text x="770" y="894" text-anchor="end" fill="#E2E8F0">'D3'(B</text>
+      <text x="1260" y="894" text-anchor="end" fill="#FFFFFF">'D*'DJ</text>
+    </g>
+  </g>
+</svg>
+

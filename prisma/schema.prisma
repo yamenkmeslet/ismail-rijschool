@@ -1,0 +1,383 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  STUDENT
+  ADMIN
+}
+
+enum SubscriptionPlan {
+  FREE
+  BASIC
+  STANDARD
+  PREMIUM
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  CANCELLED
+  PAST_DUE
+  TRIALING
+}
+
+enum QuestionType {
+  MCQ
+  IMAGE
+  VIDEO
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum QuestionStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum OptionKey {
+  A
+  B
+  C
+  D
+}
+
+enum Language {
+  NL
+  AR
+  EN
+}
+
+enum ContentBlockType {
+  TEXT
+  HTML
+  MARKDOWN
+  IMAGE
+  VIDEO
+  FAQ
+  HERO
+  FEATURE
+  SECTION_TITLE
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// User
+// ─────────────────────────────────────────────────────────────────────────────
+
+model User {
+  id               String           @id @default(cuid())
+  email            String           @unique
+  name             String?
+  hashedPassword   String?
+  role             UserRole         @default(STUDENT)
+  subscriptionPlan SubscriptionPlan @default(FREE)
+  avatarUrl        String?
+  preferredLanguage Language        @default(NL)
+  emailVerified    DateTime?
+  isActive         Boolean          @default(true)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  // Relations
+  attempts         UserQuestionAttempt[]
+  mockExams        MockExam[]
+  savedQuestions   SavedQuestion[]
+  subscription     Subscription?
+  accounts         Account[]
+  sessions         Session[]
+
+  @@map("users")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NextAuth Models
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Category
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Category {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  iconName  String?
+  color     String?
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  translations CategoryTranslation[]
+  questions    Question[]
+
+  @@map("categories")
+}
+
+model CategoryTranslation {
+  id          String   @id @default(cuid())
+  categoryId  String
+  language    Language
+  title       String
+  description String?  @db.Text
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, language])
+  @@map("category_translations")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Question
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Question {
+  id         String         @id @default(cuid())
+  type       QuestionType   @default(MCQ)
+  categoryId String
+  difficulty Difficulty     @default(MEDIUM)
+  status     QuestionStatus @default(DRAFT)
+  mediaUrl   String?
+  videoUrl   String?
+  tags       String[]       @default([])
+  sortOrder  Int            @default(0)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  // Relations
+  category        Category              @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  translations    QuestionTranslation[]
+  answerOptions   AnswerOption[]
+  attempts        UserQuestionAttempt[]
+  mockExamEntries MockExamQuestion[]
+  savedBy         SavedQuestion[]
+
+  @@map("questions")
+}
+
+model QuestionTranslation {
+  id           String   @id @default(cuid())
+  questionId   String
+  language     Language
+  questionText String   @db.Text
+  explanation  String?  @db.Text
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, language])
+  @@map("question_translations")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Answer Options
+// ─────────────────────────────────────────────────────────────────────────────
+
+model AnswerOption {
+  id         String    @id @default(cuid())
+  questionId String
+  optionKey  OptionKey
+  isCorrect  Boolean   @default(false)
+  sortOrder  Int       @default(0)
+
+  // Relations
+  question     Question               @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  translations AnswerOptionTranslation[]
+
+  @@unique([questionId, optionKey])
+  @@map("answer_options")
+}
+
+model AnswerOptionTranslation {
+  id       String   @id @default(cuid())
+  answerId String
+  language Language
+  text     String   @db.Text
+
+  answerOption AnswerOption @relation(fields: [answerId], references: [id], onDelete: Cascade)
+
+  @@unique([answerId, language])
+  @@map("answer_option_translations")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// User Activity
+// ─────────────────────────────────────────────────────────────────────────────
+
+model UserQuestionAttempt {
+  id             String   @id @default(cuid())
+  userId         String
+  questionId     String
+  selectedAnswer OptionKey
+  isCorrect      Boolean
+  timeSpentMs    Int?
+  attemptedAt    DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([userId, questionId])
+  @@index([userId, attemptedAt])
+  @@map("user_question_attempts")
+}
+
+model MockExam {
+  id             String    @id @default(cuid())
+  userId         String
+  startedAt      DateTime  @default(now())
+  completedAt    DateTime?
+  score          Int?
+  totalQuestions Int       @default(25)
+  passed         Boolean?
+  durationMs     Int?
+
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions MockExamQuestion[]
+
+  @@index([userId, startedAt])
+  @@map("mock_exams")
+}
+
+model MockExamQuestion {
+  id             String    @id @default(cuid())
+  mockExamId     String
+  questionId     String
+  selectedAnswer OptionKey?
+  isCorrect      Boolean?
+  answeredAt     DateTime?
+
+  mockExam MockExam @relation(fields: [mockExamId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([mockExamId, questionId])
+  @@map("mock_exam_questions")
+}
+
+model SavedQuestion {
+  id         String   @id @default(cuid())
+  userId     String
+  questionId String
+  savedAt    DateTime @default(now())
+  notes      String?  @db.Text
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+  @@index([userId, savedAt])
+  @@map("saved_questions")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Subscription
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  plan                 SubscriptionPlan   @default(FREE)
+  status               SubscriptionStatus @default(INACTIVE)
+  startDate            DateTime?
+  endDate              DateTime?
+  trialEndDate         DateTime?
+  stripeSubscriptionId String?            @unique
+  stripeCustomerId     String?            @unique
+  stripePriceId        String?
+  cancelAtPeriodEnd    Boolean            @default(false)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CMS Content Blocks
+// ─────────────────────────────────────────────────────────────────────────────
+
+model ContentBlock {
+  id        String           @id @default(cuid())
+  key       String           @unique
+  type      ContentBlockType @default(TEXT)
+  isActive  Boolean          @default(true)
+  sortOrder Int              @default(0)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  translations ContentBlockTranslation[]
+
+  @@map("content_blocks")
+}
+
+model ContentBlockTranslation {
+  id             String   @id @default(cuid())
+  contentBlockId String
+  language       Language
+  title          String?
+  body           String?  @db.Text
+  mediaUrl       String?
+  ctaLabel       String?
+  ctaUrl         String?
+
+  contentBlock ContentBlock @relation(fields: [contentBlockId], references: [id], onDelete: Cascade)
+
+  @@unique([contentBlockId, language])
+  @@map("content_block_translations")
+}
