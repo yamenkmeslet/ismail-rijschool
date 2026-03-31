@@ -1,33 +1,34 @@
-import { NextAuthOptions } from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import GoogleProvider from 'next-auth/providers/google'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { prisma } from '@/lib/prisma'
+import { NextAuthOptions } from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from "next-auth/providers/google"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { prisma } from "@/lib/prisma"
 
+/** NextAuth + Prisma — use only when `isDemoAuthMode()` is false. Loaded dynamically. */
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/login',
-    signOut: '/login',
-    error: '/login',
+    signIn: "/login",
+    signOut: "/login",
+    error: "/login",
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
     CredentialsProvider({
-      name: 'credentials',
+      name: "credentials",
       credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error('Email and password required')
+          throw new Error("Email and password required")
         }
 
         const user = await prisma.user.findUnique({
@@ -35,11 +36,9 @@ export const authOptions: NextAuthOptions = {
         })
 
         if (!user) {
-          throw new Error('No account found with this email')
+          throw new Error("No account found with this email")
         }
 
-        // In production, compare hashed passwords with bcrypt
-        // For now, accept any password for demo
         return {
           id: user.id,
           email: user.email,
@@ -67,4 +66,4 @@ export const authOptions: NextAuthOptions = {
   },
 }
 
-export type UserRole = 'STUDENT' | 'ADMIN'
+export type UserRole = "STUDENT" | "ADMIN"

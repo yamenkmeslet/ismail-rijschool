@@ -38,9 +38,13 @@ type Messages = {
     loginOr: string
     loginNoAccount: string
     loginCreate: string
+    loginDemoButton: string
+    loginDemoHint: string
+    loginMissingFields: string
   }
   student: {
     home: string
+    logOut: string
     dashboard: string
     practice: string
     categories: string
@@ -98,9 +102,14 @@ const nl: Messages = {
     loginOr: "OF",
     loginNoAccount: "Nog geen account",
     loginCreate: "Maak er gratis een aan",
+    loginDemoButton: "Demo — direct inloggen",
+    loginDemoHint:
+      "Demo-modus: elk e-mailadres en wachtwoord werken, of gebruik de knop hierboven.",
+    loginMissingFields: "Vul je e-mailadres en wachtwoord in.",
   },
   student: {
     home: "Thuis",
+    logOut: "Uitloggen",
     dashboard: "Dashboard",
     practice: "Oefenen",
     categories: "Per categorie",
@@ -158,9 +167,13 @@ const en: Messages = {
     loginOr: "OR",
     loginNoAccount: "No account yet",
     loginCreate: "Create one for free",
+    loginDemoButton: "Demo — sign in instantly",
+    loginDemoHint: "Demo mode: any email and password work, or use the button above.",
+    loginMissingFields: "Please enter your email and password.",
   },
   student: {
     home: "Home",
+    logOut: "Log out",
     dashboard: "Dashboard",
     practice: "Practice",
     categories: "By category",
@@ -218,9 +231,13 @@ const ar: Messages = {
     loginOr: "أو",
     loginNoAccount: "ليس لديك حساب",
     loginCreate: "أنشئ حسابا مجانا",
+    loginDemoButton: "تجربة — دخول فوري",
+    loginDemoHint: "وضع العرض: أي بريد وكلمة مرور صالحان أو استخدم الزر أعلاه.",
+    loginMissingFields: "يرجى إدخال البريد الإلكتروني وكلمة المرور.",
   },
   student: {
     home: "الرئيسية",
+    logOut: "تسجيل الخروج",
     dashboard: "لوحة التحكم",
     practice: "تدريب",
     categories: "حسب القسم",

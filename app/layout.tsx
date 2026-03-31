@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/providers/theme-provider"
+import { AuthSessionProvider } from "@/components/providers/auth-session-provider"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
@@ -116,8 +117,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <AuthSessionProvider>
+            {children}
+            <Toaster />
+          </AuthSessionProvider>
         </ThemeProvider>
       </body>
     </html>
